@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(GameState.self) private var gameState
-    
+    // Cambio para el commit
     var body: some View {
         switch gameState.screen {
         case .mainMenu:
