@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		8198F1242FE9209C00258BAD /* ProyectoEjemplo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProyectoEjemplo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8198F1242FE9209C00258BAD /* MiniRPG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniRPG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		8198F1262FE9209C00258BAD /* ProyectoEjemplo */ = {
+		8198F1262FE9209C00258BAD /* MiniRPG */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ProyectoEjemplo;
+			path = MiniRPG;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		8198F11B2FE9209C00258BAD = {
 			isa = PBXGroup;
 			children = (
-				8198F1262FE9209C00258BAD /* ProyectoEjemplo */,
+				8198F1262FE9209C00258BAD /* MiniRPG */,
 				8198F1252FE9209C00258BAD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +40,7 @@
 		8198F1252FE9209C00258BAD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8198F1242FE9209C00258BAD /* ProyectoEjemplo.app */,
+				8198F1242FE9209C00258BAD /* MiniRPG.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8198F1232FE9209C00258BAD /* ProyectoEjemplo */ = {
+		8198F1232FE9209C00258BAD /* MiniRPG */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8198F12F2FE9209D00258BAD /* Build configuration list for PBXNativeTarget "ProyectoEjemplo" */;
+			buildConfigurationList = 8198F12F2FE9209D00258BAD /* Build configuration list for PBXNativeTarget "MiniRPG" */;
 			buildPhases = (
 				8198F1202FE9209C00258BAD /* Sources */,
 				8198F1212FE9209C00258BAD /* Frameworks */,
@@ -61,13 +61,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				8198F1262FE9209C00258BAD /* ProyectoEjemplo */,
+				8198F1262FE9209C00258BAD /* MiniRPG */,
 			);
-			name = ProyectoEjemplo;
+			name = MiniRPG;
 			packageProductDependencies = (
 			);
 			productName = ProyectoEjemplo;
-			productReference = 8198F1242FE9209C00258BAD /* ProyectoEjemplo.app */;
+			productReference = 8198F1242FE9209C00258BAD /* MiniRPG.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8198F11F2FE9209C00258BAD /* Build configuration list for PBXProject "ProyectoEjemplo" */;
+			buildConfigurationList = 8198F11F2FE9209C00258BAD /* Build configuration list for PBXProject "MiniRPG" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8198F1232FE9209C00258BAD /* ProyectoEjemplo */,
+				8198F1232FE9209C00258BAD /* MiniRPG */,
 			);
 		};
 /* End PBXProject section */
@@ -313,7 +313,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8198F11F2FE9209C00258BAD /* Build configuration list for PBXProject "ProyectoEjemplo" */ = {
+		8198F11F2FE9209C00258BAD /* Build configuration list for PBXProject "MiniRPG" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8198F12D2FE9209D00258BAD /* Debug */,
@@ -322,7 +322,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8198F12F2FE9209D00258BAD /* Build configuration list for PBXNativeTarget "ProyectoEjemplo" */ = {
+		8198F12F2FE9209D00258BAD /* Build configuration list for PBXNativeTarget "MiniRPG" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8198F1302FE9209D00258BAD /* Debug */,
