@@ -12,13 +12,14 @@ enum GameScreen {
     case exploring
     case battle
     case inventory
+    case shop
     case gameOver
 }
 
 @Observable
 class GameState {
     var screen: GameScreen = .mainMenu
-    var hero: Hero = Hero(name: "Cloud", maxHP: 30, currentHP: 30, attack: 6, defense: 2, level: 1, xp: 0)
+    var hero: Hero = Hero(name: "Cloud", maxHP: 30, currentHP: 30, attack: 6, defense: 2, level: 1, xp: 0, gold: 0)
     var currentEnemy: Enemy? = nil
     var inventory: [Item] = [.healthPotion(), .healthPotion(), .strengthPotion()]
     var battleLog: [String] = []
@@ -39,8 +40,9 @@ class GameState {
         battleLog.append("⚔️ Atacas y haces \(damage) de daño.")
         
         if enemy.currentHP <= 0 {
-            battleLog.append("🏆 ¡Has derrotado a \(enemy.name)! +\(enemy.xpReward) XP")
+            battleLog.append("🏆 ¡Has derrotado a \(enemy.name)! +\(enemy.xpReward) XP +\(enemy.goldReward) 💰")
             hero.xp += enemy.xpReward
+            hero.gold += enemy.goldReward
             currentEnemy = nil
             checkLevelUp()
             return
@@ -116,11 +118,17 @@ class GameState {
     }
     
     func newGame() {
-        hero = Hero(name: "Cloud", maxHP: 30, currentHP: 30, attack: 6, defense: 2, level: 1, xp: 0)
+        hero = Hero(name: "Cloud", maxHP: 30, currentHP: 30, attack: 6, defense: 2, level: 1, xp: 0, gold: 0)
         currentEnemy = nil
         inventory = [.healthPotion(), .healthPotion(), .strengthPotion()]
         battleLog = []
         screen = .exploring
+    }
+    
+    func buy(_ item: Item) {
+        guard hero.gold >= item.price else { return }
+        hero.gold -= item.price
+        inventory.append(item)
     }
 }
 

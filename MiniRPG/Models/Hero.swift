@@ -14,5 +14,6 @@ struct Hero {
     var defense: Int
     var level: Int
     var xp: Int
+    var gold: Int
 }
 

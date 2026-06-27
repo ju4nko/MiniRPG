@@ -12,18 +12,19 @@ struct Enemy {
     var attack: Int
     var defense: Int
     var xpReward: Int
+    var goldReward: Int
     var emoji: String
     
     static func goblin() -> Enemy {
-        Enemy(name: "Felipez360", maxHP: 15, currentHP: 15, attack: 4, defense: 1, xpReward: 10, emoji: "👹")
+        Enemy(name: "Felipez360", maxHP: 15, currentHP: 15, attack: 4, defense: 1, xpReward: 10, goldReward: 5, emoji: "👹")
     }
     
     static func skeleton() -> Enemy {
-        Enemy(name: "Xokas", maxHP: 20, currentHP: 20, attack: 5, defense: 2, xpReward: 15, emoji: "💀")
+        Enemy(name: "Xokas", maxHP: 20, currentHP: 20, attack: 5, defense: 2, xpReward: 15, goldReward: 8, emoji: "💀")
     }
     
     static func wolf() -> Enemy {
-        Enemy(name: "Huesoperro", maxHP: 25, currentHP: 25, attack: 7, defense: 1, xpReward: 20, emoji: "🐺")
+        Enemy(name: "Huesoperro", maxHP: 25, currentHP: 25, attack: 7, defense: 1, xpReward: 20, goldReward: 12, emoji: "🐺")
     }
 }
 

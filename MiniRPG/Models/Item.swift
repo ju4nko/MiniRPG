@@ -11,17 +11,19 @@ enum ItemEffect {
     case boostAttack(amount: Int) // sube x puntos de ataque
 }
 
-struct Item {
+struct Item : Identifiable {
+    let id = UUID()
     var name: String
     var emoji: String
     var effect: ItemEffect
+    var price: Int
     
     
     static func healthPotion() -> Item {
-        Item(name: "Poción de curación menor", emoji: "🧪", effect: .heal(amount: 15))
+        Item(name: "Poción de curación menor", emoji: "🧪", effect: .heal(amount: 15), price: 10)
     }
     
     static func strengthPotion() -> Item {
-        Item(name: "Poción de fuerza menor", emoji: "💪", effect: .boostAttack(amount: 3))
+        Item(name: "Poción de fuerza menor", emoji: "💪", effect: .boostAttack(amount: 3), price: 25)
     }
 }

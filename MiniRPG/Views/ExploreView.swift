@@ -60,10 +60,16 @@ struct ExploreView: View {
                 gameState.screen = .inventory
             }
             
+            Button("🛒 Tienda") {
+                gameState.screen = .shop
+            }
+            
             Button("🏠 Menú principal") {
                 gameState.returnToMenu()
             }
             .foregroundStyle(.secondary)
+            
+            
         }
     }
     
