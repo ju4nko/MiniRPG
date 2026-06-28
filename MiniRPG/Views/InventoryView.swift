@@ -58,6 +58,9 @@ struct InventoryView: View {
         switch effect {
         case .heal(let amount): return "Cura \(amount) HP"
         case .boostAttack(let amount): return "+\(amount) ATK"
+        case .boostDefense(let amount): return "+\(amount) DEF"
+        case .fullHeal: return "Cura toda la vida"
+        case .damageEnemy(let amount): return "Daña \(amount) al enemigo"
         }
     }
 }

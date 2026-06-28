@@ -10,7 +10,7 @@ import SwiftUI
 struct ShopView: View {
     @Environment(GameState.self) private var gameState
     
-    private let catalog: [Item] = [.healthPotion(), .strengthPotion()]
+    private let catalog: [Item] = [.healthPotion(), .strengthPotion(), .defensePotion(), .elixir(), .bomb()]
     
     var body: some View {
         VStack(spacing: 16) {
@@ -52,6 +52,9 @@ struct ShopView: View {
         switch effect {
         case .heal(let amount): return "Cura \(amount) HP"
         case .boostAttack(let amount): return "+\(amount) ATK"
+        case .boostDefense(let amount): return "+\(amount) DEF"
+        case .fullHeal: return "Cura toda la vida"
+        case .damageEnemy(let amount): return "Daña \(amount) al enemigo"
         }
     }
 }

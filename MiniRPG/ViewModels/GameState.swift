@@ -63,22 +63,27 @@ class GameState {
         SoundManager.shared.play(.attack)
         
         if enemy.currentHP <= 0 {
-            battleLog.append("🏆 ¡Has derrotado a \(enemy.name)! +\(enemy.xpReward) XP +\(enemy.goldReward) 💰")
-            SoundManager.shared.play(.victory)
-            hero.xp += enemy.xpReward
-            hero.gold += enemy.goldReward
-            let wasBoss = enemy.isBoss
-            currentEnemy = nil
-            checkLevelUp()
-            save()
-            if wasBoss {
-                screen = .victory
-            }
+            defeatEnemy(enemy)
             return
         }
         
         currentEnemy = enemy
         enemyAttack()
+        
+    }
+    
+    func defeatEnemy(_ enemy: Enemy) {
+        battleLog.append("🏆 ¡Has derrotado a \(enemy.name)! +\(enemy.xpReward) XP +\(enemy.goldReward) 💰")
+        SoundManager.shared.play(.victory)
+        hero.xp += enemy.xpReward
+        hero.gold += enemy.goldReward
+        let wasBoss = enemy.isBoss
+        currentEnemy = nil
+        checkLevelUp()
+        save()
+        if wasBoss {
+            screen = .victory
+        }
         
     }
     
@@ -136,7 +141,27 @@ class GameState {
         case .boostAttack(let amount):
             hero.attack += amount
             battleLog.append("💪 Usas \(item.name). +\(amount) de ataque.")
+        case .boostDefense(let amount):
+            hero.defense += amount
+            battleLog.append("🛡️ Usas \(item.name). +\(amount) de defensa.")
+        case .fullHeal:
+            let healed = hero.maxHP - hero.currentHP
+            hero.currentHP = hero.maxHP
+            battleLog.append("✨ Usas \(item.name). Recuperas \(healed) HP.")
+        case .damageEnemy(let amount):
+            if var enemy = currentEnemy {
+                enemy.currentHP -= amount
+                battleLog.append("💣 Usas \(item.name). Haces \(amount) de daño a \(enemy.name).")
+                SoundManager.shared.play(.attack)
+                currentEnemy = enemy
+                if enemy.currentHP <= 0 {
+                    defeatEnemy(enemy)
+                }
+            } else {
+                battleLog.append("💣 No hay enemigo al que atacar.")
+            }
         }
+    
         
         inventory.remove(at: index)
         
