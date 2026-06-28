@@ -15,6 +15,7 @@ enum GameScreen {
     case inventory
     case shop
     case gameOver
+    case victory
 }
 
 @Observable
@@ -32,11 +33,24 @@ class GameState {
         saveGame != nil
     }
     
-    
     func startBattle() {
-        let possibleEnemies = [Enemy.goblin(), Enemy.skeleton(), Enemy.wolf()]
+        let possibleEnemies : [Enemy]
+        switch hero.level {
+        case 1...2:
+            possibleEnemies = [.rat(), .goblin(), .slime()]
+        case 3...4:
+            possibleEnemies = [.goblin(), .skeleton(), .wolf(), .slime()]
+        default:
+            possibleEnemies = [.wolf(), .orc(), .dragon()]
+        }
         currentEnemy = possibleEnemies.randomElement()
         battleLog = ["¡Un \(currentEnemy?.name ?? "enemigo") aparece!"]
+        screen = .battle
+    }
+    
+    func startBossBattle() {
+        currentEnemy = .finalBoss()
+        battleLog = ["⚠️ ¡El Señor del Caos ha aparecido!"]
         screen = .battle
     }
     
@@ -53,9 +67,13 @@ class GameState {
             SoundManager.shared.play(.victory)
             hero.xp += enemy.xpReward
             hero.gold += enemy.goldReward
+            let wasBoss = enemy.isBoss
             currentEnemy = nil
             checkLevelUp()
             save()
+            if wasBoss {
+                screen = .victory
+            }
             return
         }
         

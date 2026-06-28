@@ -5,6 +5,7 @@
 //  Created by Juanjo on 28/06/2026.
 //
 import AudioToolbox
+import Observation
 
 enum GameSound: SystemSoundID {
     case attack  = 1104    // "Tock" corto
@@ -14,6 +15,7 @@ enum GameSound: SystemSoundID {
     case defeat  = 1326    // "Descent" (morir)
 }
 
+@Observable
 final class SoundManager {
     static let shared = SoundManager()
     private init() {}

@@ -34,6 +34,12 @@ struct MainMenuView: View {
                     .tint(.red)
                 }
                 
+                Button {
+                    SoundManager.shared.isEnabled.toggle()
+                } label: {
+                    Image(systemName: SoundManager.shared.isEnabled ? "speaker.wave.2.fill" : "speaker.slash.fill")
+                }
+                
             }
         }
         .padding()
