@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
-struct ProyectoEjemploApp: App {
+struct MiniRPGApp: App {
     @State private var gameState = GameState()
     
     var body: some Scene {
@@ -16,5 +17,6 @@ struct ProyectoEjemploApp: App {
             ContentView()
                 .environment(gameState)
         }
+        .modelContainer(for: SaveGame.self)
     }
 }

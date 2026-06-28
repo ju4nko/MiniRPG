@@ -16,13 +16,24 @@ struct MainMenuView: View {
                 .bold()
             Text("Juego desarrollado por Juanjo")
                 .font(.title2)
-            HStack {
+            VStack(spacing: 12) {
                 Button("Nueva partida") {
                     gameState.newGame()
                 }
-                Button("Continuar") {
-                    gameState.screen = .exploring
+                .buttonStyle(.borderedProminent)
+                if gameState.hasSavedGame {
+                    Button("Continuar") {
+                        gameState.screen = .exploring
+                    }
+                    .buttonStyle(.bordered)
+                    
+                    Button("Borrar partida") {
+                        gameState.deleteSave()
+                    }
+                    .buttonStyle(.bordered)
+                    .tint(.red)
                 }
+                
             }
         }
         .padding()

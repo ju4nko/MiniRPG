@@ -6,13 +6,13 @@
 //
 import Foundation
 
-enum ItemEffect {
+enum ItemEffect: Codable {
     case heal(amount: Int) // cura x puntos de vida
     case boostAttack(amount: Int) // sube x puntos de ataque
 }
 
-struct Item : Identifiable {
-    let id = UUID()
+struct Item : Identifiable, Codable {
+    var id = UUID()
     var name: String
     var emoji: String
     var effect: ItemEffect

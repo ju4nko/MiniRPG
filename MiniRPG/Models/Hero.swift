@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct Hero {
+struct Hero: Codable  {
     var name: String
     var maxHP: Int
     var currentHP: Int

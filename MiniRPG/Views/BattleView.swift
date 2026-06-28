@@ -20,6 +20,12 @@ struct BattleView: View {
             heroPanel
             
             actionButtons
+            
+            Button(" <- Volver") {
+                gameState.screen = .exploring
+            }.buttonStyle(.borderedProminent)
+                .tint(.green)
+            .disabled(gameState.currentEnemy != nil)
         }
         .padding()
     }

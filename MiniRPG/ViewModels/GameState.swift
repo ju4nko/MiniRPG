@@ -6,6 +6,7 @@
 //
 import Foundation
 import SwiftUI
+import SwiftData
 
 enum GameScreen {
     case mainMenu
@@ -23,6 +24,13 @@ class GameState {
     var currentEnemy: Enemy? = nil
     var inventory: [Item] = [.healthPotion(), .healthPotion(), .strengthPotion()]
     var battleLog: [String] = []
+    
+    var modelContext: ModelContext? = nil
+    private var saveGame: SaveGame? = nil
+    
+    var hasSavedGame: Bool {
+        saveGame != nil
+    }
     
     
     func startBattle() {
@@ -45,6 +53,7 @@ class GameState {
             hero.gold += enemy.goldReward
             currentEnemy = nil
             checkLevelUp()
+            save()
             return
         }
         
@@ -64,6 +73,7 @@ class GameState {
             hero.currentHP = 0
             battleLog.append("☠️ Has caído derrotado...")
             screen = .gameOver
+            deleteSave()
         }
     }
     
@@ -111,6 +121,7 @@ class GameState {
         if currentEnemy != nil {
             enemyAttack()
         }
+        save()
     }
     
     func returnToMenu() {
@@ -123,12 +134,52 @@ class GameState {
         inventory = [.healthPotion(), .healthPotion(), .strengthPotion()]
         battleLog = []
         screen = .exploring
+        save()
     }
     
     func buy(_ item: Item) {
         guard hero.gold >= item.price else { return }
         hero.gold -= item.price
         inventory.append(item)
+        save()
+    }
+    
+    func configure(_ context: ModelContext) {
+        modelContext = context
+        load()
+    }
+    
+    func load() {
+        guard let modelContext else { return }
+        let descriptor = FetchDescriptor<SaveGame>()
+        if let existing = try? modelContext.fetch(descriptor).first {
+            saveGame = existing
+            hero = existing.hero
+            inventory = existing.inventory
+        }
+    }
+    
+    func save() {
+        guard let modelContext else { return }
+        if let saveGame {
+            saveGame.hero = hero
+            saveGame.inventory = inventory
+            saveGame.updatedAt = Date()
+        } else {
+            let newSave = SaveGame(hero: hero, inventory: inventory, updatedAt: Date())
+            modelContext.insert(newSave)
+            saveGame = newSave
+        }
+        try? modelContext.save()
+    }
+    
+    func deleteSave() {
+        guard let modelContext else { return }
+        if let saveGame {
+            modelContext.delete(saveGame)
+            try? modelContext.save()
+            self.saveGame = nil
+        }
     }
 }
 
