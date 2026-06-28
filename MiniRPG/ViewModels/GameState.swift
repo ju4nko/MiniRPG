@@ -46,9 +46,11 @@ class GameState {
         let damage = max(1, hero.attack - enemy.defense)
         enemy.currentHP -= damage
         battleLog.append("⚔️ Atacas y haces \(damage) de daño.")
+        SoundManager.shared.play(.attack)
         
         if enemy.currentHP <= 0 {
             battleLog.append("🏆 ¡Has derrotado a \(enemy.name)! +\(enemy.xpReward) XP +\(enemy.goldReward) 💰")
+            SoundManager.shared.play(.victory)
             hero.xp += enemy.xpReward
             hero.gold += enemy.goldReward
             currentEnemy = nil
@@ -72,6 +74,7 @@ class GameState {
         if hero.currentHP <= 0 {
             hero.currentHP = 0
             battleLog.append("☠️ Has caído derrotado...")
+            SoundManager.shared.play(.defeat)
             screen = .gameOver
             deleteSave()
         }
@@ -87,6 +90,7 @@ class GameState {
             hero.attack += 2
             hero.defense += 1
             battleLog.append("🌟 ¡Has subido al nivel \(hero.level)!")
+            SoundManager.shared.play(.levelUp)
         }
     }
     
@@ -141,6 +145,7 @@ class GameState {
         guard hero.gold >= item.price else { return }
         hero.gold -= item.price
         inventory.append(item)
+        SoundManager.shared.play(.coin)
         save()
     }
     
