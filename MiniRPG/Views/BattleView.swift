@@ -14,6 +14,15 @@ struct BattleView: View {
     var body: some View {
         VStack(spacing: 16) {
             if let enemy = gameState.currentEnemy {
+                if enemy.isBoss {
+                    Text("⚠️ JEFE FINAL ⚠️")
+                        .font(.headline)
+                        .bold()
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 6)
+                        .background(.red, in: Capsule())
+                }
                 enemyPanel(enemy)
                     .offset(x: enemyShake)
             }

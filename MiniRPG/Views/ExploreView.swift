@@ -69,6 +69,13 @@ struct ExploreView: View {
             }
             .foregroundStyle(.secondary)
             
+            if gameState.hero.level >= 5 {
+                Button("🐲 Desafiar al jefe") {
+                    gameState.startBossBattle()
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.purple)
+            }
             
         }
     }

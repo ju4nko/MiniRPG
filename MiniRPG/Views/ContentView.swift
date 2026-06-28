@@ -20,6 +20,7 @@ struct ContentView: View {
             case .inventory: InventoryView()
             case .gameOver: GameOverView()
             case .shop: ShopView()
+            case .victory: VictoryView()
             }
         }
         .task {
