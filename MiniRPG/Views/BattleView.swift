@@ -8,16 +8,24 @@ import SwiftUI
 
 struct BattleView: View {
     @Environment(GameState.self) private var gameState
+    @State private var enemyShake: CGFloat = 0
+    @State private var heroFlash: Bool = false
     
     var body: some View {
         VStack(spacing: 16) {
             if let enemy = gameState.currentEnemy {
                 enemyPanel(enemy)
+                    .offset(x: enemyShake)
             }
             
             battleLog
             
             heroPanel
+                .overlay {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(.red)
+                        .opacity(heroFlash ? 0.5: 0)
+                }
             
             actionButtons
             
@@ -28,6 +36,11 @@ struct BattleView: View {
             .disabled(gameState.currentEnemy != nil)
         }
         .padding()
+        .onChange(of: gameState.hero.currentHP) { oldValue, newValue in
+            if newValue < oldValue {
+                flashHero()
+            }
+        }
     }
     
     private func enemyPanel(_ enemy: Enemy) -> some View {
@@ -86,6 +99,7 @@ struct BattleView: View {
         HStack(spacing: 12) {
             Button("⚔️ Atacar") {
                 gameState.heroAttack()
+                shakeEnemy()
             }
             .buttonStyle(.borderedProminent)
             
@@ -99,6 +113,29 @@ struct BattleView: View {
             }
             .buttonStyle(.bordered)
             .tint(.orange)
+        }
+    }
+    
+    private func shakeEnemy() {
+        Task {
+            for offset in [-12.0, 12.0, -8.0, 8.0, 0.0] {
+                withAnimation(.linear(duration: 0.05)) {
+                    enemyShake = offset
+                }
+                try? await Task.sleep(for: .milliseconds(50))
+            }
+        }
+    }
+    
+    private func flashHero() {
+        withAnimation(.easeIn(duration: 0.08)) {
+            heroFlash = true
+        }
+        Task {
+            try? await Task.sleep(for: .milliseconds(120))
+            withAnimation(.easeOut(duration: 0.2)) {
+                heroFlash = false
+            }
         }
     }
 }
