@@ -25,6 +25,8 @@ class GameState {
     var currentEnemy: Enemy? = nil
     var inventory: [Item] = [.healthPotion(), .healthPotion(), .strengthPotion()]
     var battleLog: [String] = []
+    var critChance: Double = 0.2
+    var lastAttackWasCritical = false
     
     var modelContext: ModelContext? = nil
     private var saveGame: SaveGame? = nil
@@ -57,9 +59,16 @@ class GameState {
     func heroAttack() {
         guard var enemy = currentEnemy else { return }
         
-        let damage = max(1, hero.attack - enemy.defense)
+        var damage = max(1, hero.attack - enemy.defense)
+        let isCrit = Double.random(in: 0...1) < critChance
+        lastAttackWasCritical = isCrit
+        if isCrit {
+            damage *= 2
+            battleLog.append("💥 ¡CRÍTICO! Haces \(damage) de daño.")
+        } else {
+            battleLog.append("⚔️ Atacas y haces \(damage) de daño.")
+        }
         enemy.currentHP -= damage
-        battleLog.append("⚔️ Atacas y haces \(damage) de daño.")
         SoundManager.shared.play(.attack)
         
         if enemy.currentHP <= 0 {

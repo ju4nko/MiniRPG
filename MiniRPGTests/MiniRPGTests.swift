@@ -69,5 +69,33 @@ struct MiniRPGTests {
         let enemy = try #require(game.currentEnemy)   // ← desenvuelve el ENEMIGO
         #expect(enemy.currentHP < enemy.maxHP)         // ← ahora enemy.xxx son Int normales    }
     }
+    
+    @Test func criticoForzadoHaceDobleDaño() throws {
+        let game = GameState()
+        game.critChance = 1.0
+        game.hero.attack = 10
+        let enemy = Enemy.dragon()
+        game.currentEnemy = enemy
+        
+        game.heroAttack()
+        
+        let enemigo = try #require(game.currentEnemy)
+        #expect(enemigo.currentHP == enemigo.maxHP - 10)
+        
+    }
+    
+    @Test func dañoSinCritico() throws {
+        let game = GameState()
+        game.critChance = 0.0
+        game.hero.attack = 10
+        let enemy = Enemy.dragon()
+        game.currentEnemy = enemy
+        
+        game.heroAttack()
+        
+        let enemigo = try #require(game.currentEnemy)
+        #expect(enemigo.currentHP == enemigo.maxHP - 5)
+        
+    }
 }
     

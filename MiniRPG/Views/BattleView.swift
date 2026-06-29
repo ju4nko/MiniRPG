@@ -109,7 +109,7 @@ struct BattleView: View {
         HStack(spacing: 12) {
             Button("⚔️ Atacar") {
                 gameState.heroAttack()
-                shakeEnemy()
+                shakeEnemy(strong: gameState.lastAttackWasCritical)
             }
             .buttonStyle(.borderedProminent)
             
@@ -126,9 +126,12 @@ struct BattleView: View {
         }
     }
     
-    private func shakeEnemy() {
+    private func shakeEnemy(strong: Bool) {
+        let offsets: [CGFloat] = strong
+            ? [-24, 24, -20, 20, -14, 14, -8, 8, 0]   // crítico: más fuerte y largo
+            : [-12, 12, -8, 8, 0]                       // normal
         Task {
-            for offset in [-12.0, 12.0, -8.0, 8.0, 0.0] {
+            for offset in offsets {
                 withAnimation(.linear(duration: 0.05)) {
                     enemyShake = offset
                 }
