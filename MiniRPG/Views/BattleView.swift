@@ -100,29 +100,45 @@ struct BattleView: View {
                 .tint(.green)
             Text("❤️ \(gameState.hero.currentHP) / \(gameState.hero.maxHP)")
                 .font(.caption)
+            ProgressView(value: Double(gameState.hero.mana), total: Double(gameState.hero.maxMana))
+                .tint(.blue)
+            Text("🔮 \(gameState.hero.mana) / \(gameState.hero.maxMana)")
+                .font(.caption)
         }
         .padding()
         .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12))
     }
     
     private var actionButtons: some View {
-        HStack(spacing: 12) {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
             Button("⚔️ Atacar") {
                 gameState.heroAttack()
                 shakeEnemy(strong: gameState.lastAttackWasCritical)
             }
             .buttonStyle(.borderedProminent)
+            .frame(maxWidth: .infinity)
+            
+            Button("🔮 Hechizo") {
+                gameState.castSpell()
+                shakeEnemy(strong: true)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.blue)
+            .disabled(gameState.hero.mana < 5 || gameState.currentEnemy == nil)
+            .frame(maxWidth: .infinity)
             
             Button("🧪 Inventario") {
                 gameState.screen = .inventory
             }
             .buttonStyle(.bordered)
+            .frame(maxWidth: .infinity)
             
             Button("💨 Huir") {
                 gameState.flee()
             }
             .buttonStyle(.bordered)
             .tint(.orange)
+            .frame(maxWidth: .infinity)
         }
     }
     

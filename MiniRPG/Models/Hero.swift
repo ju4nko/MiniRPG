@@ -15,5 +15,7 @@ struct Hero: Codable  {
     var level: Int
     var xp: Int
     var gold: Int
+    var maxMana: Int
+    var mana: Int
 }
 

@@ -21,7 +21,7 @@ enum GameScreen {
 @Observable
 class GameState {
     var screen: GameScreen = .mainMenu
-    var hero: Hero = Hero(name: "Cloud", maxHP: 30, currentHP: 30, attack: 6, defense: 2, level: 1, xp: 0, gold: 0)
+    var hero: Hero = Hero(name: "Cloud", maxHP: 30, currentHP: 30, attack: 6, defense: 2, level: 1, xp: 0, gold: 0, maxMana: 10, mana: 10)
     var currentEnemy: Enemy? = nil
     var inventory: [Item] = [.healthPotion(), .healthPotion(), .strengthPotion()]
     var battleLog: [String] = []
@@ -72,6 +72,8 @@ class GameState {
         enemy.currentHP -= damage
         SoundManager.shared.play(.attack)
         
+        hero.mana = min(hero.maxMana, hero.mana + 2)
+        
         if enemy.currentHP <= 0 {
             defeatEnemy(enemy)
             return
@@ -118,6 +120,30 @@ class GameState {
         }
     }
     
+    func castSpell() {
+        guard var enemy = currentEnemy else { return }
+        
+        let cost = 5
+        guard hero.mana >= cost else {
+            battleLog.append("🔮 No tienes maná suficiente.")
+            return
+        }
+        
+        hero.mana -= cost
+        let damage = hero.attack * 2 + 5
+        enemy.currentHP -= damage
+        battleLog.append("🔮 Lanzas un hechizo y haces \(damage) de daño.")
+        SoundManager.shared.play(.levelUp)
+        currentEnemy = enemy
+        
+        if enemy.currentHP <= 0 {
+            defeatEnemy(enemy)
+            return
+        }
+        
+        enemyAttack()
+    }
+    
     func checkLevelUp() {
         let xpNeeded = hero.level * 20
         if hero.xp >= xpNeeded {
@@ -125,6 +151,7 @@ class GameState {
             hero.xp -= xpNeeded
             hero.maxHP += 5
             hero.currentHP = hero.maxHP
+            hero.mana = hero.maxMana
             hero.attack += 2
             hero.defense += 1
             battleLog.append("🌟 ¡Has subido al nivel \(hero.level)!")
@@ -177,7 +204,6 @@ class GameState {
             }
         }
     
-        
         inventory.remove(at: index)
         
         if currentEnemy != nil {
@@ -191,7 +217,7 @@ class GameState {
     }
     
     func newGame() {
-        hero = Hero(name: "Cloud", maxHP: 30, currentHP: 30, attack: 6, defense: 2, level: 1, xp: 0, gold: 0)
+        hero = Hero(name: "Cloud", maxHP: 30, currentHP: 30, attack: 6, defense: 2, level: 1, xp: 0, gold: 0, maxMana: 10, mana: 10)
         currentEnemy = nil
         inventory = [.healthPotion(), .healthPotion(), .strengthPotion()]
         battleLog = []
