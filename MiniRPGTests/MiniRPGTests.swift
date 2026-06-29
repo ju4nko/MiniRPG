@@ -97,5 +97,17 @@ struct MiniRPGTests {
         #expect(enemigo.currentHP == enemigo.maxHP - 5)
         
     }
+    
+    @Test func esquivaYNoRecibeDaño() {
+        let game = GameState()
+        game.dodgeChance = 1.0
+        let enemy = Enemy.dragon()
+        game.currentEnemy = enemy
+        let vidaAntesDeAtaque = game.hero.currentHP
+        
+        game.enemyAttack()
+        
+        #expect(game.hero.currentHP == vidaAntesDeAtaque)
+    }
 }
     

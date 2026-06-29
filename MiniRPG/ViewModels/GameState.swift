@@ -27,6 +27,7 @@ class GameState {
     var battleLog: [String] = []
     var critChance: Double = 0.2
     var lastAttackWasCritical = false
+    var dodgeChance: Double = 0.15
     
     var modelContext: ModelContext? = nil
     private var saveGame: SaveGame? = nil
@@ -99,6 +100,11 @@ class GameState {
     func enemyAttack() {
         guard let enemy = currentEnemy else { return }
         
+        let dodged = Double.random(in: 0...1) < dodgeChance
+        if dodged {
+            battleLog.append("🤸 ¡Esquivas el ataque de \(enemy.name)!")
+            return                              // ← sales: 0 daño, no compruebas muerte
+        }
         let damage = max(1, enemy.attack - hero.defense)
         hero.currentHP -= damage
         battleLog.append("💥 \(enemy.name) te golpea por \(damage).")
