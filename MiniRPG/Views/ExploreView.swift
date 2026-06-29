@@ -21,6 +21,9 @@ struct ExploreView: View {
             // 2. Icono ambiental
             Text("🌲🌳🌲")
                 .font(.system(size: 60))
+                .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12))
+
+            
             
             // 3. Mensaje
             Text(exploreMessage)
@@ -34,6 +37,8 @@ struct ExploreView: View {
             actionButtons
             
         }
+        .gameBackground()
+        
     }
     
     private var heroStats: some View {
@@ -67,7 +72,7 @@ struct ExploreView: View {
             Button("🏠 Menú principal") {
                 gameState.returnToMenu()
             }
-            .foregroundStyle(.secondary)
+            .foregroundStyle(.white.opacity(0.7))
             
             if gameState.hero.level >= 5 {
                 Button("🐲 Desafiar al jefe") {
@@ -78,7 +83,10 @@ struct ExploreView: View {
             }
             
         }
+        
+        
     }
+    
     
     private func explore() {
         if Double.random(in: 0...1) < 0.7 {

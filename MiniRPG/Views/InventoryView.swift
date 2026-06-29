@@ -52,6 +52,7 @@ struct InventoryView: View {
            
         }
         .padding()
+        .gameBackground()
     }
     
     private func effectDescription(_ effect: ItemEffect) -> String {

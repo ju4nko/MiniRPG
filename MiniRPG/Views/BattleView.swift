@@ -51,6 +51,7 @@ struct BattleView: View {
             }
         }
     }
+        
     
     private func enemyPanel(_ enemy: Enemy) -> some View {
         VStack(spacing: 8) {

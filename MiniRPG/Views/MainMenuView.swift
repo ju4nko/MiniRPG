@@ -10,17 +10,22 @@ import SwiftUI
 struct MainMenuView: View {
     @Environment(GameState.self) private var gameState
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
+            Spacer()
+            
             Text("⚔️ Mini RPG")
                 .font(.largeTitle)
                 .bold()
             Text("Juego desarrollado por Juanjo")
                 .font(.title2)
+            Spacer()
             VStack(spacing: 12) {
                 Button("Nueva partida") {
                     gameState.newGame()
                 }
                 .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+                .frame(maxWidth: 260)
                 if gameState.hasSavedGame {
                     Button("Continuar") {
                         gameState.screen = .exploring
@@ -41,8 +46,12 @@ struct MainMenuView: View {
                 }
                 
             }
+            Spacer()
         }
         .padding()
+        .gameBackground()
+        
+        
     }
 }
 

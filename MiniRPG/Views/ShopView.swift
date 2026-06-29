@@ -36,8 +36,6 @@ struct ShopView: View {
                 .padding()
                 .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 10))
             }
-            
-            
             Spacer()
             
             Button("← Volver") {
@@ -46,6 +44,7 @@ struct ShopView: View {
             
         }
         .padding()
+        .gameBackground()
     }
     
     private func effectDescription(_ effect: ItemEffect) -> String {
