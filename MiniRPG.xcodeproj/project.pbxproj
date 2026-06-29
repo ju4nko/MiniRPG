@@ -6,11 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		812E5FE42FF254B600DBF151 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8198F11C2FE9209C00258BAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8198F1232FE9209C00258BAD;
+			remoteInfo = MiniRPG;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		812E5FE02FF254B600DBF151 /* MiniRPGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniRPGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8198F1242FE9209C00258BAD /* MiniRPG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniRPG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		812E5FE12FF254B600DBF151 /* MiniRPGTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MiniRPGTests;
+			sourceTree = "<group>";
+		};
 		8198F1262FE9209C00258BAD /* MiniRPG */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MiniRPG;
@@ -19,6 +35,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		812E5FDD2FF254B600DBF151 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8198F1212FE9209C00258BAD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				8198F1262FE9209C00258BAD /* MiniRPG */,
+				812E5FE12FF254B600DBF151 /* MiniRPGTests */,
 				8198F1252FE9209C00258BAD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				8198F1242FE9209C00258BAD /* MiniRPG.app */,
+				812E5FE02FF254B600DBF151 /* MiniRPGTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +73,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		812E5FDF2FF254B600DBF151 /* MiniRPGTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 812E5FE62FF254B600DBF151 /* Build configuration list for PBXNativeTarget "MiniRPGTests" */;
+			buildPhases = (
+				812E5FDC2FF254B600DBF151 /* Sources */,
+				812E5FDD2FF254B600DBF151 /* Frameworks */,
+				812E5FDE2FF254B600DBF151 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				812E5FE52FF254B600DBF151 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				812E5FE12FF254B600DBF151 /* MiniRPGTests */,
+			);
+			name = MiniRPGTests;
+			packageProductDependencies = (
+			);
+			productName = MiniRPGTests;
+			productReference = 812E5FE02FF254B600DBF151 /* MiniRPGTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8198F1232FE9209C00258BAD /* MiniRPG */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8198F12F2FE9209D00258BAD /* Build configuration list for PBXNativeTarget "MiniRPG" */;
@@ -77,9 +125,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2650;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2660;
 				TargetAttributes = {
+					812E5FDF2FF254B600DBF151 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 8198F1232FE9209C00258BAD;
+					};
 					8198F1232FE9209C00258BAD = {
 						CreatedOnToolsVersion = 26.5;
 					};
@@ -100,11 +152,19 @@
 			projectRoot = "";
 			targets = (
 				8198F1232FE9209C00258BAD /* MiniRPG */,
+				812E5FDF2FF254B600DBF151 /* MiniRPGTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		812E5FDE2FF254B600DBF151 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8198F1222FE9209C00258BAD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +175,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		812E5FDC2FF254B600DBF151 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8198F1202FE9209C00258BAD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +191,57 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		812E5FE52FF254B600DBF151 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8198F1232FE9209C00258BAD /* MiniRPG */;
+			targetProxy = 812E5FE42FF254B600DBF151 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		812E5FE72FF254B600DBF151 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZP94694ML5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.juanjo.MiniRPGTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MiniRPG.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MiniRPG";
+			};
+			name = Debug;
+		};
+		812E5FE82FF254B600DBF151 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZP94694ML5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.juanjo.MiniRPGTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MiniRPG.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MiniRPG";
+			};
+			name = Release;
+		};
 		8198F12D2FE9209D00258BAD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -315,6 +432,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		812E5FE62FF254B600DBF151 /* Build configuration list for PBXNativeTarget "MiniRPGTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				812E5FE72FF254B600DBF151 /* Debug */,
+				812E5FE82FF254B600DBF151 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8198F11F2FE9209C00258BAD /* Build configuration list for PBXProject "MiniRPG" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
